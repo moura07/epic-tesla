@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "_comment_instrucao_ia": "Ao configurar conexões externas para o projeto, remova os exemplos inativos e mantenha apenas os servidores MCP necessários (Stdio local ou Streamable HTTP remoto).",
+    "example-local-sqlite": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sqlite",
+        "./database.db"
+      ],
+      "env": {
+        "DB_READONLY": "true"
+      }
+    },
+    "example-remote-http": {
+      "url": "https://mcp.example.com/mcp"
+    }
+  }
+}
