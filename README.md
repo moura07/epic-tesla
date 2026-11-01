@@ -1,29 +1,33 @@
-# 🚀 Agent Boilerplate — Arquitetura Padrão para Agentes Autônomos de IA
+# Agent Boilerplate — Arquitetura Padrão para Agentes Autônomos de IA
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-moura07%2Fepic--tesla-blue?logo=github)](https://github.com/moura07/epic-tesla.git)
-[![Architecture](https://img.shields.io/badge/Architecture-Autonomous_Agent_Loop-success)](#-arquitetura-do-ecossistema-5-n%C3%ADveis)
-[![Protocol](https://img.shields.io/badge/Protocol-MCP_%26_Progressive_Disclosure-orange)](#-as-3-meta-skills-inclusas)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Architecture](https://img.shields.io/badge/Architecture-Autonomous_Agent_Loop-success)](#arquitetura-do-ecossistema-em-5-niveis)
+[![Protocol](https://img.shields.io/badge/Protocol-MCP_%26_Progressive_Disclosure-orange)](#as-3-meta-skills-inclusas)
+[![Open Source](https://img.shields.io/badge/Community-Open_Collaboration-blueviolet)](#colaboracao-e-evolucao-continua)
 
-Template base de nível corporativo (*production-ready*) para governança e engenharia de contexto de **Agentes de IA Autônomos**. Projetado para eliminar a amnésia entre sessões, prevenir a degradação de atenção (*context rot* / *lost-in-the-middle*) e desacoplar regras operacionais da interface de execução.
+Estrutura base corporativa para governança e engenharia de contexto de **Agentes de IA Autônomos**. Projetada para eliminar a amnésia entre sessões, prevenir a sobrecarga da janela de contexto (*context rot* e *lost-in-the-middle*) e desacoplar o manual de conduta do agente da interface de execução.
 
-Compatível com os principais harnesses e plataformas de agentes do mercado: **Google Antigravity**, **Claude Code**, **Hermes**, **Cursor**, **OpenCodeInterpreter**, terminais e scripts headless via MCP.
-
----
-
-## 🎯 Por que este Boilerplate Existe? (O Que 95% Não Entende)
-
-A maioria dos desenvolvedores e equipes falha ao tentar escalar o uso de agentes porque:
-1. **Trata a IA como um Chatbot Reativo:** envia prompts quilométricos a cada interação e assume todo o custo cognitivo de pensar o próximo passo.
-2. **Sofre com a Amnésia da IA:** correções feitas em uma sessão se perdem ao fechar a janela, exigindo reensinar as regras todos os dias.
-3. **Estoura a Janela de Contexto:** enche arquivos mestres de regras com mais de 500 linhas, fazendo com que o modelo alucine ou ignore instruções vitais.
-4. **Falta de Ferramental Padronizado:** não conecta o agente a procedimentos operacionais reutilizáveis (SOPs) nem a protocolos universais de ferramentas (`MCP`).
-
-Este repositório fornece uma **base limpa, portável e padronizada em Markdown** que transforma qualquer LLM em um colaborador orientado a objetivos (**teleológico**), com memória persistente em 2 camadas e carregamento progressivo de procedimentos.
+Compatível com os principais ecossistemas e plataformas do mercado: **Google Antigravity**, **Claude Code**, **Hermes**, **Cursor**, terminais interativos e pipelines headless integrados via MCP.
 
 ---
 
-## 🏗️ Arquitetura do Ecossistema (5 Níveis)
+## Fundamentos e Proposta de Valor
+
+A maioria das implementações com modelos de linguagem falha ao tentar escalar tarefas do mundo real por quatro motivos principais:
+
+1. **Tratamento Reativo (Chatbot vs. Agente):** Dependência de prompts pontuais e dispersos, nos quais o operador humano precisa validar e planejar cada passo, assumindo toda a carga cognitiva.
+2. **Amnésia Intersessão:** LLMs operam em ambientes efêmeros. Correções realizadas ao longo do dia são descartadas ao fechar a janela, exigindo reensinar diretrizes a cada novo chat.
+3. **Sobrecarga de Atenção:** Manuais com centenas de linhas na raiz do projeto saturam a janela de contexto com ruído informacional, degradando o raciocínio lógico e induzindo alucinações.
+4. **Acoplamento à Ferramenta:** Regras de negócio aprisionadas dentro de configurações de uma plataforma específica, dificultando a portabilidade entre modelos e ambientes de desenvolvimento.
+
+Este repositório soluciona essas deficiências ao transformar a IA em um **agente teleológico (orientado a objetivos)** através de:
+- **Separação entre Chassi e Motor:** Arquitetura desacoplada baseada em Markdown, permitindo alternar livremente entre harnesses e modelos de inferência.
+- **Memória em Duas Camadas:** Leitura mandatória de aprendizados ativos no boot e compactação periódica com histórico arquivado.
+- **Divulgação Progressiva (*Progressive Disclosure*):** Procedimentos operacionais extensos (*Skills*) carregados sob demanda via metadados, mantendo a janela de contexto limpa e rápida.
+
+---
+
+## Arquitetura do Ecossistema em 5 Níveis
 
 ```mermaid
 flowchart TD
@@ -31,25 +35,25 @@ flowchart TD
         Harness["Antigravity / Claude Code / Hermes / Cursor"]
     end
 
-    subgraph L2 ["2. Constituição & Contexto Estável"]
+    subgraph L2 ["2. Constituicao & Contexto Estavel"]
         Agents["AGENTS.md (Boot & Limites: < 150 linhas)"]
         Context["Contexto Sob Demanda (.agents/context/)"]
         Rules["Regras Modulares (.agents/rules/)"]
     end
 
-    subgraph L3 ["3. Memória Persistente & Autoevolução"]
-        MemAtiva["Memória Ativa: current_learnings.md (< 100 linhas)"]
-        MemArchive["Memória Histórica: archive.md"]
-        Compaction["Compactação Periódica: compact-memory"]
+    subgraph L3 ["3. Memoria Persistente & Autoevolucao"]
+        MemAtiva["Memoria Ativa: current_learnings.md (< 100 linhas)"]
+        MemArchive["Memoria Historica: archive.md"]
+        Compaction["Compactacao Periodica: compact-memory"]
     end
 
-    subgraph L4 ["4. Ação no Mundo Real"]
+    subgraph L4 ["4. Acao no Mundo Real"]
         Skills["Skills sob Demanda (.agents/skills/*)"]
         MCP["Model Context Protocol (mcp_config.json)"]
     end
 
-    subgraph L5 ["5. Roteamento Econômico"]
-        HighLLM["Sessão/Código: Modelos de Fronteira (Sonnet / GPT / Argon)"]
+    subgraph L5 ["5. Roteamento Economico"]
+        HighLLM["Sessao/Codigo: Modelos de Fronteira (Sonnet / GPT / Argon)"]
         LowLLM["Background/Cron 24/7: Modelos Abertos (DeepSeek / Qwen / NemoTron)"]
     end
 
@@ -61,106 +65,102 @@ flowchart TD
 
 ---
 
-## 📂 Estrutura de Diretórios Detalhada
+## Estrutura de Diretórios
 
 ```text
 .
-├── COMECE_AQUI.md                             # Ponto de partida interativo (autodestruído após o onboarding)
-├── AGENTS.md                                  # Manual mestre / Constituição do Agente (< 150 linhas)
-├── README.md                                  # Documentação executiva e guia de arquitetura
-└── .agents/                                   # Diretório central de governança do agente
-    ├── mcp_config.json                        # Conectores com ferramentas externas via MCP
-    ├── context/                               # Bases de conhecimento de apoio (lidas sob demanda)
-    │   ├── business_context.md                # Regras de negócio, ICP/Personas, glossário e KPIs
-    │   └── architecture_and_stack.md          # Stack técnica, árvore de arquivos e comandos canônicos
-    ├── rules/                                 # Regras inegociáveis e padrões de conformidade
-    │   ├── security_and_guardrails.md         # Prevenção de ações destrutivas, proteção de credenciais e anti-injection
-    │   └── git_and_quality_standards.md       # DoD, limites de contexto e padrão de commits
-    ├── memory/                                # Sistema de Persistência em 2 Camadas
-    │   ├── current_learnings.md               # Caderno ativo de lições aprendidas (lido a cada boot)
-    │   └── archive.md                         # Log consolidado de lições promovidas para regras
-    └── skills/                                # Procedimentos Operacionais (SOPs) modulares
-        ├── bootstrap-project/                 # Skill de Onboarding Guiado em 5 Passos e Auto-padronização
+├── COMECE_AQUI.md                             # Guia inicial interativo (autodestruido apos o onboarding)
+├── AGENTS.md                                  # Constituicao mestra do Agente (< 150 linhas)
+├── README.md                                  # Documentacao arquitetural e operacional
+└── .agents/                                   # Governanca centralizada do Agente
+    ├── mcp_config.json                        # Conectores com servicos externos via MCP
+    ├── context/                               # Bases de conhecimento de apoio (consultadas sob demanda)
+    │   ├── business_context.md                # Regras de negocio, ICP/Personas, glossario e KPIs
+    │   └── architecture_and_stack.md          # Stack tecnica, arvore de arquivos e comandos canonicos
+    ├── rules/                                 # Regras inegociaveis e padroes de conformidade
+    │   ├── security_and_guardrails.md         # Prevencao de acoes destrutivas, dados sensiveis e guardrails
+    │   └── git_and_quality_standards.md       # Definition of Done (DoD), limites e padrao de commits
+    ├── memory/                                # Sistema de Persistencia em Duas Camadas
+    │   ├── current_learnings.md               # Caderno ativo de licoes aprendidas (lido no boot)
+    │   └── archive.md                         # Log consolidado de licoes promovidas para regras
+    └── skills/                                # Procedimentos Operacionais Padronizados (SOPs)
+        ├── bootstrap-project/                 # Onboarding guiado em 5 passos e auto-padronizacao
         │   └── SKILL.md
-        ├── create-skill/                      # Fábrica de Skills: encapsula tarefas em novas rotinas
+        ├── create-skill/                      # Fabrica de Skills: encapsula fluxos validados
         │   ├── SKILL.md
         │   └── resources/
         │       └── skill_template.md
-        └── compact-memory/                    # Higienizador de memória: poda sem perda de contexto
+        └── compact-memory/                    # Higienizador de memoria: poda sem perda de contexto
             └── SKILL.md
 ```
 
 ---
 
-## ⚡ Como Começar um Novo Projeto (Passo a Passo — `COMECE_AQUI.md`)
+## Como Inicializar um Novo Projeto
 
-### 1. Clonar ou Baixar o Repositório
+### 1. Clonar o Repositório
 
 ```bash
-# Clone o boilerplate para seu novo projeto
 git clone https://github.com/moura07/epic-tesla.git meu-novo-projeto
 cd meu-novo-projeto
 
-# (Opcional) Redefina a origem do Git para o repositório do seu novo projeto
+# Inicialize um historico limpo para o seu projeto
 rm -rf .git
 git init
 ```
 
-### 2. Abrir no seu Harness / IDE de IA Favorita
+### 2. Abrir no Harness ou Editor de Preferência
 
-Abra a pasta do projeto no **Antigravity**, **Claude Code**, **Cursor** ou no terminal com sua ferramenta CLI de agentes.
+Abra a pasta no Antigravity, Claude Code, Cursor ou ambiente de terminal integrado.
 
-### 3. Disparar o Onboarding Guiado (1 Comando)
+### 3. Disparar o Onboarding Guiado
 
-Como o [`AGENTS.md`](./AGENTS.md) já vem com gatilho automático de onboarding ativo, basta abrir o chat e digitar:
+Com o gatilho automático configurado no `AGENTS.md`, envie no chat:
 
-> **"Iniciar"** *(ou "Vamos estruturar o projeto [Nome do Projeto]")*
+> **"Iniciar"** *(ou "Vamos configurar o projeto [Nome do Projeto]")*
 
-#### O Que Acontece Automaticamente:
-1. **Entrevista Guiada em 5 Passos (1 pergunta por vez):** O agente conduz 5 perguntas estratégicas sequenciais. Em cada pergunta, ele exibe **exemplos ricos em detalhes com as melhores práticas de resposta**, adaptados dinamicamente para o nicho do seu projeto ( a partir da sua resposta no Passo 1).
-2. **Inferência Inteligente de Lacunas:** Se você responder de forma curta ou ainda não tiver definido algum ponto técnico, o agente infere os padrões de mercado recomendados e apresenta um resumo para sua confirmação rápida.
-3. **Preenchimento 100% + Criação das Primeiras Skills + Limpeza:** Após sua confirmação, o agente:
-   - Preenche 100% dos campos e tabelas de [`AGENTS.md`](./AGENTS.md), [`business_context.md`](./.agents/context/business_context.md), [`architecture_and_stack.md`](./.agents/context/architecture_and_stack.md), [`security_and_guardrails.md`](./.agents/rules/security_and_guardrails.md), [`git_and_quality_standards.md`](./.agents/rules/git_and_quality_standards.md), [`current_learnings.md`](./.agents/memory/current_learnings.md) e [`mcp_config.json`](./.agents/mcp_config.json).
-   - **Cria automaticamente as pastas e arquivos `SKILL.md` iniciais** das principais rotinas do seu projeto dentro de `.agents/skills/`.
-   - **Autodestrói o arquivo [`COMECE_AQUI.md`](./COMECE_AQUI.md)**, deixando a raiz limpa e o projeto pronto para produção.
+#### Etapas da Configuração Automática:
+1. **Entrevista Guiada em 5 Passos (1 pergunta por vez):** O agente conduz perguntas sequenciais cobrindo objetivo, negócio, ferramentas, segurança e primeiras rotinas. Em cada etapa, apresenta exemplos práticos detalhados, adaptados ao nicho do projeto.
+2. **Preenchimento Inteligente de Lacunas:** Se houver respostas parciais, o agente infere os padrões recomendados de mercado e exibe um resumo para validação antes de salvar.
+3. **Padronização Integral e Limpeza:** Após confirmação, todos os arquivos de contexto, regras e memória são preenchidos, as primeiras Skills são criadas em `.agents/skills/` e o arquivo temporário `COMECE_AQUI.md` é removido automaticamente.
 
 ---
 
-## 🛠️ As 3 Meta-Skills Inclusas
+## As 3 Meta-Skills Inclusas
 
-| Meta-Skill | Gatilho / Quando Utilizar | Como Funciona |
+| Meta-Skill | Finalidade | Mecanismo de Ação |
 | :--- | :--- | :--- |
-| **`bootstrap-project`** | Início de novos projetos ou ao detectar `[PENDENTE DE CONTEXTO]`. | Transforma contexto desestruturado em arquitetura padronizada sem estourar limites de linhas. |
-| **`create-skill`** | Após finalizar uma rotina com excelência (ex.: geração de propostas, auditoria de PRs). | Converte o fluxo em uma nova pasta dentro de `.agents/skills/<nome>/` com frontmatter YAML e DoD. |
-| **`compact-memory`** | Quando `current_learnings.md` atinge ~80 a 100 linhas. | Promove aprendizados definitivos para `.agents/rules/` e arquiva o log em `archive.md`, mantendo a memória ativa abaixo de 40 linhas. |
+| **`bootstrap-project`** | Configuração inicial ao iniciar novos projetos. | Mapeia contexto estruturado e preenche os arquivos base sem ultrapassar os limites de linhas. |
+| **`create-skill`** | Modularização de rotinas bem-sucedidas. | Converte fluxos consolidados em pacotes reutilizáveis em `.agents/skills/<nome>/` com frontmatter YAML e DoD. |
+| **`compact-memory`** | Higienização da memória ativa. | Transfere aprendizados estáveis de `current_learnings.md` para as regras permanentes e move o histórico para `archive.md`. |
 
 ---
 
-## 🧠 Como Funciona o Ciclo de Autoevolução
+## Ciclo de Autoevolução e Acúmulo de Contexto
 
 ```text
        [Operador corrige a IA no chat]
                      │
                      ▼
-  [IA grava a lição em .agents/memory/current_learnings.md]
+  [IA registra a licao em .agents/memory/current_learnings.md]
                      │
                      ▼
-  [A cada novo boot/sessão, a IA relê current_learnings.md]
+  [A cada nova sessao, a IA relê current_learnings.md]
                      │
                      ▼
-  [Atingiu ~80 linhas? Executa a skill compact-memory]
+  [Ao atingir ~80 linhas, aciona a skill compact-memory]
          ┌───────────┴───────────┐
          ▼                       ▼
 [Promove para .agents/rules/]   [Arquiva em archive.md]
 ```
 
-Dessa forma, o agente constrói um **fosso competitivo (*moat*) de contexto acumulado**: após 3 a 6 meses de uso, a operação roda com centenas de ajustes finos memorizados sem degradar a velocidade ou clareza do modelo.
+Esse ciclo contínuo estabelece um **ativo cumulativo proprietário**: ao longo das semanas de uso, o agente refina suas decisões e alinhamento com a equipe sem sofrer lentidão ou dispersão no raciocínio.
 
 ---
 
-## 🔌 Conectando Ferramentas Externas via MCP
+## Integração com Ferramentas Externas (MCP)
 
-O arquivo [`.agents/mcp_config.json`](./.agents/mcp_config.json) vem pré-estruturado para permitir conexões locais (Stdio) ou remotas (Streamable HTTP):
+O arquivo [`.agents/mcp_config.json`](./.agents/mcp_config.json) segue a especificação do Model Context Protocol:
 
 ```json
 {
@@ -177,29 +177,29 @@ O arquivo [`.agents/mcp_config.json`](./.agents/mcp_config.json) vem pré-estrut
 }
 ```
 
-Basta descomentar ou apontar para os conectores do seu ecossistema (Gmail, Notion, Slack, GitHub, Postgres, etc.).
+Permite conectar ferramentas locais (`Stdio`) ou serviços remotos (`Streamable HTTP`) para leitura de bancos, envio de e-mails, integração com repositórios e chamadas de APIs externas.
 
 ---
 
-## 💰 Estratégia de Roteamento de Modelos (Economia de Tokens)
+## Roteamento de Modelos e Otimização de Custo
 
-Para evitar contas proibitivas de API, utilize a regra da segregação de tarefas:
+Para manter a viabilidade econômica em projetos de alta demanda:
 
-* **Agentes de Sessão (Interativos / Arquitetura / Desenvolvimento):**
-  * Use modelos de fronteira com alta capacidade de raciocínio (`Claude 3.5 Sonnet`, `Gemini 1.5 Pro / Argon`, `GPT-4o`).
-* **Agentes Persistentes 24/7 (Background / Crons / Triagens Contínuas):**
-  * Conecte harnesses contínuos a modelos abertos de baixo custo (`DeepSeek-V3`, `Qwen 2.5`, `GLM-4`) ou modelos locais com custo zero de token via inferência local (`NemoTron` da NVIDIA / `Ollama`).
+* **Sessão Interativa e Arquitetura:** Modelos de raciocínio avançado (`Claude 3.5 Sonnet`, `Gemini Pro / Argon`, `GPT-4o`) para estruturação, análise de código complexo e criação de novas Skills.
+* **Tarefas Contínuas de Background (24/7):** Modelos abertos de alta eficiência (`DeepSeek-V3`, `Qwen 2.5`, `GLM-4`) ou execução local com custo zero de tokens (`NemoTron`, `Ollama`) para crons, triagens e rotinas automatizadas.
 
 ---
 
-## 🤝 Boas Práticas e Contribuições
+## Diretrizes de Uso e Boas Práticas
 
-1. **Mantenha o `AGENTS.md` enxuto:** Nunca ultrapasse 200 linhas (meta: $\le 150$ linhas). Se uma instrução for detalhada demais, transforme-a em uma **Skill**.
-2. **Respeite o DoD (*Definition of Done*):** Teste antes de validar qualquer entrega.
-3. **Commits Semânticos:** Utilize sempre `feat:`, `fix:`, `docs:` e `chore:`.
+1. **Concisão no `AGENTS.md`:** Manter o arquivo sempre abaixo de 200 linhas (recomendado: até 150 linhas). Regras extensas pertencem a `.agents/rules/` e fluxos detalhados a `.agents/skills/`.
+2. **Critério de Validação Obrigatório (DoD):** Toda tarefa deve ser inspecionada na prática antes de ser considerada concluída.
+3. **Padrão de Versionamento:** Commits atômicos no formato Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).
 
 ---
 
-## 📄 Licença
+## Colaboração e Evolução Contínua
 
-Este projeto é disponibilizado sob a licença [MIT](LICENSE) — sinta-se livre para utilizar comercialmente, customizar e distribuir em seus projetos internos e consultorias.
+Este repositório foi concebido como um padrão vivo para a comunidade de engenharia de agentes de IA. Melhorias em regras de governança, novas meta-skills e aprimoramentos nos protocolos de contexto são amplamente bem-vindos.
+
+Sinta-se livre para abrir *issues*, sugerir melhorias estruturais via *pull requests* ou adaptar este modelo para as particularidades do seu time ou empresa.
