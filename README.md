@@ -65,12 +65,13 @@ flowchart TD
 
 ```text
 .
+├── COMECE_AQUI.md                             # Ponto de partida interativo (autodestruído após o onboarding)
 ├── AGENTS.md                                  # Manual mestre / Constituição do Agente (< 150 linhas)
-├── README.md                                  # Documentação executiva e guia de onboarding
+├── README.md                                  # Documentação executiva e guia de arquitetura
 └── .agents/                                   # Diretório central de governança do agente
     ├── mcp_config.json                        # Conectores com ferramentas externas via MCP
     ├── context/                               # Bases de conhecimento de apoio (lidas sob demanda)
-    │   ├── business_context.md                # Regras de negócio, ICP/Personas, produtos e KPIs
+    │   ├── business_context.md                # Regras de negócio, ICP/Personas, glossário e KPIs
     │   └── architecture_and_stack.md          # Stack técnica, árvore de arquivos e comandos canônicos
     ├── rules/                                 # Regras inegociáveis e padrões de conformidade
     │   ├── security_and_guardrails.md         # Prevenção de ações destrutivas, proteção de credenciais e anti-injection
@@ -79,7 +80,7 @@ flowchart TD
     │   ├── current_learnings.md               # Caderno ativo de lições aprendidas (lido a cada boot)
     │   └── archive.md                         # Log consolidado de lições promovidas para regras
     └── skills/                                # Procedimentos Operacionais (SOPs) modulares
-        ├── bootstrap-project/                 # Skill de Onboarding e Auto-padronização inicial
+        ├── bootstrap-project/                 # Skill de Onboarding Guiado em 5 Passos e Auto-padronização
         │   └── SKILL.md
         ├── create-skill/                      # Fábrica de Skills: encapsula tarefas em novas rotinas
         │   ├── SKILL.md
@@ -91,7 +92,7 @@ flowchart TD
 
 ---
 
-## ⚡ Como Começar um Novo Projeto (Passo a Passo)
+## ⚡ Como Começar um Novo Projeto (Passo a Passo — `COMECE_AQUI.md`)
 
 ### 1. Clonar ou Baixar o Repositório
 
@@ -109,21 +110,19 @@ git init
 
 Abra a pasta do projeto no **Antigravity**, **Claude Code**, **Cursor** ou no terminal com sua ferramenta CLI de agentes.
 
-### 3. Disparar o Bootstrap (Modo Zero Config)
+### 3. Disparar o Onboarding Guiado (1 Comando)
 
-Escolha uma das abordagens no chat do seu agente:
+Como o [`AGENTS.md`](./AGENTS.md) já vem com gatilho automático de onboarding ativo, basta abrir o chat e digitar:
 
-#### Opção A — Se você já tem um briefing ou código existente:
-> *"Ative a skill `bootstrap-project` para configurar este repositório com o seguinte contexto: [cole o briefing, escopo ou peça para inspecionar os arquivos da pasta]."*
+> **"Iniciar"** *(ou "Vamos estruturar o projeto [Nome do Projeto]")*
 
-#### Opção B — Se você quer construir o projeto do zero via entrevista:
-> *"Ative a skill `bootstrap-project` no modo de entrevista para estruturarmos o projeto passo a passo."*
-
-O agente fará as perguntas essenciais (uma por vez) e preencherá automaticamente:
-- A seção de identidade e papel no [`AGENTS.md`](./AGENTS.md).
-- O público, personas e métricas em [`.agents/context/business_context.md`](./.agents/context/business_context.md).
-- A stack técnica e comandos em [`.agents/context/architecture_and_stack.md`](./.agents/context/architecture_and_stack.md).
-- As restrições de segurança específicas em [`.agents/rules/security_and_guardrails.md`](./.agents/rules/security_and_guardrails.md).
+#### O Que Acontece Automaticamente:
+1. **Entrevista Guiada em 5 Passos (1 pergunta por vez):** O agente conduz 5 perguntas estratégicas sequenciais. Em cada pergunta, ele exibe **exemplos ricos em detalhes com as melhores práticas de resposta**, adaptados dinamicamente para o nicho do seu projeto ( a partir da sua resposta no Passo 1).
+2. **Inferência Inteligente de Lacunas:** Se você responder de forma curta ou ainda não tiver definido algum ponto técnico, o agente infere os padrões de mercado recomendados e apresenta um resumo para sua confirmação rápida.
+3. **Preenchimento 100% + Criação das Primeiras Skills + Limpeza:** Após sua confirmação, o agente:
+   - Preenche 100% dos campos e tabelas de [`AGENTS.md`](./AGENTS.md), [`business_context.md`](./.agents/context/business_context.md), [`architecture_and_stack.md`](./.agents/context/architecture_and_stack.md), [`security_and_guardrails.md`](./.agents/rules/security_and_guardrails.md), [`git_and_quality_standards.md`](./.agents/rules/git_and_quality_standards.md), [`current_learnings.md`](./.agents/memory/current_learnings.md) e [`mcp_config.json`](./.agents/mcp_config.json).
+   - **Cria automaticamente as pastas e arquivos `SKILL.md` iniciais** das principais rotinas do seu projeto dentro de `.agents/skills/`.
+   - **Autodestrói o arquivo [`COMECE_AQUI.md`](./COMECE_AQUI.md)**, deixando a raiz limpa e o projeto pronto para produção.
 
 ---
 
