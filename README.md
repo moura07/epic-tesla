@@ -69,34 +69,35 @@ flowchart TD
 
 ```text
 .
-├── COMECE_AQUI.md                             # Guia inicial interativo (autodestruido apos o onboarding)
-├── AGENTS.md                                  # Constituicao mestra do Agente (< 150 linhas)
-├── README.md                                  # Documentacao arquitetural e operacional
-└── .agents/                                   # Governanca centralizada do Agente
-    ├── mcp_config.json                        # Conectores com servicos externos via MCP
+├── COMECE_AQUI.md                             # Guia de partida (autodestruído após o bootstrap)
+├── ESTRUTURADOR_DE_AGENTE.md                  # Arquiteto de concepção para chats externos (autodestruído após o bootstrap)
+├── AGENTS.md                                  # Constituição mestra do Agente (< 150 linhas)
+├── README.md                                  # Documentação arquitetural e operacional
+└── .agents/                                   # Governança centralizada do Agente
+    ├── mcp_config.json                        # Conectores com serviços externos via MCP
     ├── context/                               # Bases de conhecimento de apoio (consultadas sob demanda)
-    │   ├── business_context.md                # Regras de negocio, ICP/Personas, glossario e KPIs
-    │   └── architecture_and_stack.md          # Stack tecnica, arvore de arquivos e comandos canonicos
-    ├── rules/                                 # Regras inegociaveis e padroes de conformidade
-    │   ├── security_and_guardrails.md         # Prevencao de acoes destrutivas, dados sensiveis e guardrails
-    │   └── git_and_quality_standards.md       # Definition of Done (DoD), limites e padrao de commits
-    ├── memory/                                # Sistema de Persistencia em Duas Camadas
-    │   ├── current_learnings.md               # Caderno ativo de licoes aprendidas (lido no boot)
-    │   └── archive.md                         # Log consolidado de licoes promovidas para regras
+    │   ├── business_context.md                # Regras de negócio, ICP/Personas, glossário e KPIs
+    │   └── architecture_and_stack.md          # Stack técnica, árvore de arquivos e comandos canônicos
+    ├── rules/                                 # Regras inegociáveis e padrões de conformidade
+    │   ├── security_and_guardrails.md         # Prevenção de ações destrutivas, dados sensíveis e guardrails
+    │   └── git_and_quality_standards.md       # Definition of Done (DoD), limites e padrão de commits
+    ├── memory/                                # Sistema de Persistência em Duas Camadas
+    │   ├── current_learnings.md               # Caderno ativo de lições aprendidas (lido no boot)
+    │   └── archive.md                         # Log consolidado de lições promovidas para regras
     └── skills/                                # Procedimentos Operacionais Padronizados (SOPs)
-        ├── bootstrap-project/                 # Onboarding guiado em 5 passos e auto-padronizacao
+        ├── bootstrap-project/                 # Motor de onboarding Fast-Track (autodestruído após o bootstrap)
         │   └── SKILL.md
-        ├── create-skill/                      # Fabrica de Skills: encapsula fluxos validados
+        ├── create-skill/                      # Fábrica permanente de Skills: encapsula fluxos validados
         │   ├── SKILL.md
         │   └── resources/
         │       └── skill_template.md
-        └── compact-memory/                    # Higienizador de memoria: poda sem perda de contexto
+        └── compact-memory/                    # Higienizador permanente de memória: poda sem perda de contexto
             └── SKILL.md
 ```
 
 ---
 
-## Como Inicializar um Novo Projeto
+## Como Inicializar um Novo Projeto (2 Modos de Partida)
 
 ### 1. Clonar o Repositório
 
@@ -109,30 +110,31 @@ rm -rf .git
 git init
 ```
 
-### 2. Abrir no Harness ou Editor de Preferência
+### 2. Escolher o Modo de Onboarding
 
-Abra a pasta no Antigravity, Claude Code, Cursor ou ambiente de terminal integrado.
+#### 🔥 Modo A (Recomendado — Fast-Track via `ESTRUTURADOR_DE_AGENTE.md`):
+1. Anexe o arquivo [`ESTRUTURADOR_DE_AGENTE.md`](./ESTRUTURADOR_DE_AGENTE.md) em qualquer chat tradicional (**Gemini Web, ChatGPT, Claude**).
+2. Lapide a ideia com o assistente (ele conectará sua ideia à arquitetura `epic-tesla`, sugerirá novas Skills e estabelecerá automaticamente o padrão ideal de segurança na Etapa 4).
+3. Copie o **Bloco Único Fast-Track** gerado ao final e cole no seu agente dentro da IDE (**Antigravity, Claude Code, Cursor**).
+4. O agente da IDE executará a gravação em **lote paralelo em 1 único turno (~8 segundos)**, sem refazer perguntas!
 
-### 3. Disparar o Onboarding Guiado
-
-Com o gatilho automático configurado no `AGENTS.md`, envie no chat:
+#### ⚡ Modo B (Direto na IDE):
+Abra a pasta diretamente no **Antigravity, Claude Code ou Cursor** e digite:
 
 > **"Iniciar"** *(ou "Vamos configurar o projeto [Nome do Projeto]")*
 
-#### Etapas da Configuração Automática:
-1. **Entrevista Guiada em 5 Passos (1 pergunta por vez):** O agente conduz perguntas sequenciais cobrindo objetivo, negócio, ferramentas, segurança e primeiras rotinas. Em cada etapa, apresenta exemplos práticos detalhados, adaptados ao nicho do projeto.
-2. **Preenchimento Inteligente de Lacunas:** Se houver respostas parciais, o agente infere os padrões recomendados de mercado e exibe um resumo para validação antes de salvar.
-3. **Padronização Integral e Limpeza:** Após confirmação, todos os arquivos de contexto, regras e memória são preenchidos, as primeiras Skills são criadas em `.agents/skills/` e o arquivo temporário `COMECE_AQUI.md` é removido automaticamente.
+### 3. Padronização e Autolimpeza Automática
+Ao concluir o bootstrap (seja via Modo A ou Modo B), o agente grava todos os arquivos de governança em paralelo, cria as primeiras Skills em `.agents/skills/` e **remove automaticamente o kit de instalação temporário** (`COMECE_AQUI.md`, `ESTRUTURADOR_DE_AGENTE.md` e `.agents/skills/bootstrap-project/`), deixando o repositório 100% limpo para produção.
 
 ---
 
 ## As 3 Meta-Skills Inclusas
 
-| Meta-Skill | Finalidade | Mecanismo de Ação |
+| Meta-Skill | Ciclo de Vida | Finalidade e Mecanismo de Ação |
 | :--- | :--- | :--- |
-| **`bootstrap-project`** | Configuração inicial ao iniciar novos projetos. | Mapeia contexto estruturado e preenche os arquivos base sem ultrapassar os limites de linhas. |
-| **`create-skill`** | Modularização de rotinas bem-sucedidas. | Converte fluxos consolidados em pacotes reutilizáveis em `.agents/skills/<nome>/` com frontmatter YAML e DoD. |
-| **`compact-memory`** | Higienização da memória ativa. | Transfere aprendizados estáveis de `current_learnings.md` para as regras permanentes e move o histórico para `archive.md`. |
+| **`bootstrap-project`** | Temporária (Autodestruída após o setup) | Materializa a arquitetura inicial em **Modo Fast-Track (1 turno)** ou entrevista guiada e limpa o kit de instalação ao concluir. |
+| **`create-skill`** | Permanente | Converte fluxos consolidados em pacotes reutilizáveis em `.agents/skills/<nome>/` com frontmatter YAML e DoD. |
+| **`compact-memory`** | Permanente | Transfere aprendizados estáveis de `current_learnings.md` para as regras permanentes e move o histórico para `archive.md`. |
 
 ---
 

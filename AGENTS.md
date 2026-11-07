@@ -2,9 +2,9 @@
 
 > **[DIRETRIZ DE AUTO-PADRONIZAÇÃO E GATILHO DE ONBOARDING PARA A IA]:**
 > Enquanto os campos da seção **2. Identidade e Missão do Projeto** contiverem marcadores `[PENDENTE DE CONTEXTO]`, você está em **Modo de Onboarding (`COMECE_AQUI.md`)**.
-> - Ao receber qualquer comando inicial do usuário (ex: *"Iniciar"*, *"Começar"*, *"Configurar projeto"*, ou qualquer pedido para iniciar um novo projeto), **leia e execute imediatamente a skill `bootstrap-project`** em [`.agents/skills/bootstrap-project/SKILL.md`](.agents/skills/bootstrap-project/SKILL.md).
-> - Conduza a **Entrevista Guiada em 5 Passos (1 pergunta por vez)**, fornecendo obrigatoriamente exemplos ricos de resposta em cada pergunta.
-> - Ao final da entrevista, preencha 100% dos arquivos desta estrutura, crie as primeiras Skills do projeto, remova este aviso de Onboarding e exclua o arquivo temporário `COMECE_AQUI.md`. Mantenha este `AGENTS.md` rigorosamente abaixo de **150 linhas**.
+> - **Rota Fast-Track (Gabarito Completo Recebido):** Se o usuário colar o Gabarito dos 5 Passos (gerado via [`ESTRUTURADOR_DE_AGENTE.md`](ESTRUTURADOR_DE_AGENTE.md)), **NÃO faça perguntas nem peça nova confirmação**. Execute imediatamente a Fase de Gravação em Lote Paralelo da skill [`bootstrap-project`](.agents/skills/bootstrap-project/SKILL.md) em **1 único turno**.
+> - **Rota Guiada na IDE (Comando *"Iniciar"* ou ideia inicial):** Se o usuário iniciar sem o gabarito pronto, leia e execute a skill [`bootstrap-project`](.agents/skills/bootstrap-project/SKILL.md), estabelecendo proativamente o padrão ideal de segurança (Etapa 4).
+> - **Limpeza Pós-Bootstrap:** Ao concluir a gravação de todos os arquivos e criar as primeiras Skills, remova este aviso de Onboarding e exclua os arquivos temporários de instalação (`COMECE_AQUI.md`, `ESTRUTURADOR_DE_AGENTE.md` e a pasta `.agents/skills/bootstrap-project/`). Mantenha este `AGENTS.md` rigorosamente abaixo de **150 linhas**.
 
 ---
 
@@ -12,7 +12,7 @@
 
 Antes de iniciar qualquer raciocínio ou execução de tarefa nesta sessão:
 1. **Carregar Memória Ativa:** Leia integralmente [`.agents/memory/current_learnings.md`](.agents/memory/current_learnings.md) para absorver correções operacionais, preferências do operador e exceções aprendidas em sessões anteriores.
-2. **Verificar Estado do Projeto:** Se a seção 2 abaixo contiver `[PENDENTE DE CONTEXTO]`, inicie imediatamente a entrevista guiada da skill [`bootstrap-project`](.agents/skills/bootstrap-project/SKILL.md) antes de executar outras tarefas.
+2. **Verificar Estado do Projeto:** Se a seção 2 abaixo contiver `[PENDENTE DE CONTEXTO]`, acione imediatamente a skill [`bootstrap-project`](.agents/skills/bootstrap-project/SKILL.md) conforme a diretriz acima.
 3. **Consultar Contexto Sob Demanda:** Não carregue todos os arquivos do projeto de uma vez. Consulte [`.agents/context/business_context.md`](.agents/context/business_context.md) para decisões de negócio/produto e [`.agents/context/architecture_and_stack.md`](.agents/context/architecture_and_stack.md) para decisões técnicas/operacionais apenas quando necessário.
 
 ---
